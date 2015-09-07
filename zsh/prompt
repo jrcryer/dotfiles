@@ -1,0 +1,28 @@
+export SBT_OPTS='-XX:PermSize=256M
+-Djavax.net.ssl.keyStore=/Users/cryerj01/.cert/dev.bbc.co.uk.p12
+-Djavax.net.ssl.keyStorePassword=xxx
+-Djavax.net.ssl.keyStoreType=PKCS12
+-Dmaven.wagon.http.ssl.insecure=true
+-Dmaven.wagon.http.ssl.allowall=true
+-Djsse.enableSNIExtension=false
+-Djavax.net.ssl.trustStore=/Users/cryerj01/.cert/jssecacerts
+-Djavax.net.ssl.trustStorePassword=changeit
+-Djavax.net.ssl.trustStoreType=JKS
+-XX:MaxPermSize=512M'
+
+export JAVA_OPTS=$SBT_OPTS
+export MAVEN_OPTS=$SBT_OPTS
+
+export DOCKER_CERT_PATH=/Users/cryerj01/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
+export DOCKER_HOST=tcp://192.168.59.103:2376
+
+ZSH_THEME_GIT_PROMPT_PREFIX="("
+ZSH_THEME_GIT_PROMPT_SUFFIX=")$reset_color"
+ZSH_THEME_GIT_PROMPT_DIRTY="$fg_no_bold[red]+"
+ZSH_THEME_GIT_PROMPT_CLEAN="$fg_no_bold[green]"
+
+export BBC_COSMOS_TOOLS_CERT="$HOME/.cert/temp.pem"
+
+PROMPT='$fg_no_bold[cyan]james at $fg_no_bold[green]$(get_pwd)$(put_spacing)$(git_prompt_info)
+$reset_color→ '

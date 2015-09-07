@@ -1,0 +1,139 @@
+#!/bin/bash
+
+# Reith Proxy Utils
+#
+# This file contains some useful functions for setting and un-setting various BBC proxies
+#
+# To use this simply source the file from your regular bash config and you're good to go
+#
+# To enable a proxy use "reith_proxy_on" and to disable use "reith_proxy_off"
+#
+# You can also set proxies individually i.e set_ftp_proxy && unset_ftp_proxy
+#
+# ====================================================
+
+# BBC HTTP Proxy
+
+HTTP="http://www-cache.reith.bbc.co.uk:80"
+
+# BBC FTP Proxy
+
+FTP="ftp://ftp-gw.reith.bbc.co.uk:21"
+
+# BBC SOCKS Proxy
+
+SOCKS="socks-gw.reith.bbc.co.uk:1085"
+
+# HTTP && HTTPS
+# ====================================================
+
+function set_http_proxy {
+    export http_proxy=$HTTP
+    export HTTP_PROXY=$HTTP
+}
+
+function unset_http_proxy {
+    unset http_proxy HTTP_PROXY
+}
+
+function set_https_proxy {
+    export https_proxy=$HTTP
+    export HTTPS_PROXY=$HTTP
+}
+
+function unset_https_proxy {
+    unset https_proxy HTTPS_PROXY
+}
+
+# SOCKS
+# ====================================================
+
+function set_socks_proxy {
+    export socks_proxy=$SOCKS
+    export SOCKS_PROXY=$SOCKS
+}
+
+function unset_socks_proxy {
+    unset socks_proxy SOCKS_PROXY
+}
+
+# NO PROXY
+# ====================================================
+
+function set_no_proxy {
+    export NO_PROXY="192.168.59.103,127.0.0.1,localhost"
+}
+
+function unset_no_proxy {
+    unset NO_PROXY
+}
+
+# FTP
+# ====================================================
+
+function set_ftp_proxy {
+    export ftp_proxy=$FTP
+    export FTP_PROXY=$FTP
+}
+
+function unset_ftp_proxy {
+    unset ftp_proxy FTP_PROXY
+}
+
+# Git
+# ====================================================
+
+function set_git_proxy {
+  git config --global http.proxy $HTTP
+  git config --global https.proxy $HTTP
+  sed -i '.original' 's/\#ProxyCommand/ProxyCommand/g' ~/.ssh/config
+}
+
+function unset_git_proxy {
+  git config --unset --global http.proxy
+  git config --unset --global https.proxy
+  sed -i '.original' 's/ProxyCommand/\#ProxyCommand/g' ~/.ssh/config
+}
+
+# Npm
+# ====================================================
+
+function set_npm_proxy {
+  npm config set proxy $HTTP
+  npm config set https-proxy $HTTP
+}
+
+function unset_npm_proxy {
+  npm config delete proxy
+  npm config delete https-proxy
+}
+
+# Public functions
+# ====================================================
+
+function reith-on {
+    echo 'Enabling proxy...'
+    set_http_proxy
+    set_https_proxy
+    set_no_proxy
+    set_ftp_proxy
+    set_npm_proxy
+    set_git_proxy
+    echo 'Proxy enabled'
+}
+
+function reith-off {
+    echo 'Disabling proxy...'
+    unset_http_proxy
+    unset_https_proxy
+    unset_no_proxy
+    unset_ftp_proxy
+    unset_npm_proxy
+    unset_git_proxy
+    echo 'Proxy disabled'
+}
+
+function aws-stack {
+  ruby -rjson -ryaml -e "Dir.glob('src/*.yml') {|a| j = JSON.pretty_generate(YAML.load_file(a)); File.open('templates/' + File.basename(a, '.yml') + '.json', 'w') {|f| f.write(j) } }"
+}
+

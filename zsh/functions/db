@@ -1,0 +1,18 @@
+function get-db() {
+  host=$1
+  user=$2
+  db=$3
+
+  if [ ! -d ./backup ]; then
+    mkdir ./backup
+  fi
+  ssh $host "mysqldump -u $user -p $db | gzip -9 > $db.sql.gz"
+  cd ./backup
+  scp $host:~/$db.sql.gz .
+
+  if [ -f "$db.sql.gz" ]; then
+    gunzip $db.sql.gz
+    ssh $host "rm $db.sql.gz"
+  fi
+  cd ../
+}

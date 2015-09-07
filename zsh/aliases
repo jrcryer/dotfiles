@@ -1,0 +1,76 @@
+# lazy
+alias l="ls"
+
+# misc
+alias man="LC_ALL=C LANG=C man"
+alias ll="ls -al"
+alias ls="ls -G"
+
+# bundle and ruby rails stuff
+alias be="bundle exec"
+alias bi="bundle install"
+alias rk="rake"
+alias ber="bundle exec rake"
+
+# docker
+alias doc="docker-compose"
+#alias dockercleancontainers="docker rm $(docker ps -a -q)"
+#alias dockercleanimages="docker rmi $(docker images | awk '/^<none>/ { print $3 }')"
+
+# git alises
+alias ga="git add"
+alias gaa="git aa"
+alias gap="git add -p"
+alias gci="git ci"
+alias gcm="git ci -m"
+alias gco="git co"
+alias gcob="git co -b"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias ghp="git checkout gh-pages && git rebase master && git push origin gh-pages && git checkout master"
+alias gl="git log --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit"
+alias gpo="git pull origin"
+alias gpom="git pom"
+alias gpu="git push"
+alias grm="git rm"
+alias grh="git reset HEAD"
+alias gum="gco master && gpo"
+alias gpuhe="git push heroku master"
+alias gput="git push --tags"
+alias gpuh="gpu && gput && gpuhe"
+alias gpl="git pull"
+alias gt="git tag"
+alias gnrt="git-new-remote-tracking"
+
+# npm
+alias n="node"
+alias ni="npm install"
+alias nis="npm install --save"
+alias nisd="npm install --save-dev"
+alias nig="npm install -g"
+alias nl="npm link"
+alias nr="npm run"
+
+# jekyll
+alias js="jekyll --server"
+
+# vagrant
+alias vup="vagrant up"
+alias vhalt="vagrant halt"
+alias vssh="vagrant ssh"
+
+# dotfiles
+alias df="cd ~/dotfiles"
+alias srcz="source ~/.zshrc"
+
+# thanks to @phuunet for this one
+# https://twitter.com/phuunet/status/339318973634052096
+alias topcmds='cat ~/.zhistory | cut -d ";" -f 2 | sed "s, .*,," | sort | uniq -c | sort -n | tail -rn 30'
+
+# Finder
+alias sf='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hf='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+
+# curl
+alias scurl="curl --cert ~/.cert/cert.pem --cacert ~/.cert/ca.pem"
+alias swget="wget -O- --certificate ~/.certs/cert.pem --no-check-certificate"
