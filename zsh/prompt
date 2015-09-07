@@ -15,7 +15,7 @@ export MAVEN_OPTS=$SBT_OPTS
 
 export DOCKER_CERT_PATH=/Users/cryerj01/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
-export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_HOST=tcp://192.168.59.104:2376
 
 ZSH_THEME_GIT_PROMPT_PREFIX="("
 ZSH_THEME_GIT_PROMPT_SUFFIX=")$reset_color"
