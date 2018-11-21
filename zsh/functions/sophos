@@ -1,0 +1,6 @@
+function cloud-test-only() {
+  service=$1
+  test=$2
+
+  ./gradlew $service\:test --tests '*$test*'
+}

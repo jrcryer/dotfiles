@@ -8,6 +8,7 @@ source $CONF/functions/aws
 source $CONF/functions/bbc
 source $CONF/functions/db
 source $CONF/functions/git
+source $CONF/functions/sophos
 
 TZ="Europe/London"
 HISTFILE=$HOME/.zhistory
@@ -23,10 +24,35 @@ source $ZSH/oh-my-zsh.sh
 source $CONF/zshenv
 source $CONF/prompt
 
-export PATH=$PATH:$HOME/bin:$HOME/.rbenv/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home
+#export PATH=$JAVA_HOME/bin:$PATH
+
+export PATH=$PATH:$HOME/bin:$HOME/.rbenv/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/$HOME/phantomjs/bin
+export PATH=$PATH:$HOME/google-cloud-sdk/bin:$HOME/google-cloud-sdk/platform/google_appengine/
+export PATH=~/.local/bin:$PATH
+export PATH=/Users/jamescryer/Developer/projects/emsdk:/Users/jamescryer/Developer/projects/emsdk/clang/fastcomp/build_incoming_64/bin:/Users/jamescryer/Developer/projects/emsdk/node/8.9.1_64bit/bin:/Users/jamescryer/Developer/projects/emsdk/emscripten/incoming:/Users/jamescryer/Developer/projects/emsdk/binaryen/master_64bit_binaryen/bin:$PATH
 eval "$(rbenv init - zsh)"
+
+ZSH_THEME="robbyrussell"
 
 # better cding
 # http://robots.thoughtbot.com/cding-to-frequently-used-directories-in-zsh
 setopt auto_cd
-cdpath=($HOME/projects $HOME/xcode)
+cdpath=($HOME/projects $HOME/xcode $HOME/g/home $HOME/g/cloud $HOME/Developer/projects)
+
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
+eval "$(pyenv init -)"
+source '/Users/jamescryer/google-cloud-sdk/path.zsh.inc'
+source '/Users/jamescryer/google-cloud-sdk/completion.zsh.inc'
+export PATH="/usr/local/opt/docker@1.71/bin:$PATH"
+
+alias hmr-dep='docker run --rm -it --network="host" registry.sophos-tools.com/platform/hmr-dep'
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/jamescryer/.nvm/versions/node/v7.0.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/jamescryer/.nvm/versions/node/v7.0.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/jamescryer/.nvm/versions/node/v7.0.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/jamescryer/.nvm/versions/node/v7.0.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh

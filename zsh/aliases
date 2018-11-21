@@ -17,6 +17,12 @@ alias doc="docker-compose"
 #alias dockercleancontainers="docker rm $(docker ps -a -q)"
 #alias dockercleanimages="docker rmi $(docker images | awk '/^<none>/ { print $3 }')"
 
+# Networking
+alias nrestart="sudo sh -c \"ifconfig en0 down && ifconfig en0 up\""
+
+#python
+alias python2="python2.7"
+
 # git alises
 alias ga="git add"
 alias gaa="git aa"
@@ -74,3 +80,13 @@ alias hf='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /
 # curl
 alias scurl="curl --cert ~/.cert/cert.pem --cacert ~/.cert/ca.pem"
 alias swget="wget -O- --certificate ~/.certs/cert.pem --no-check-certificate"
+
+# build
+alias cloud-build="./gradlew assemble build -x check"
+
+# sophos
+alias master="git co master"
+alias develop="git co develop"
+
+# Chrome
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
