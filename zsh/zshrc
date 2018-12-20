@@ -18,7 +18,7 @@ SAVEHIST=20000
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(aws brew bower docker git github go npm osx ruby rails sbt scala vagrant)
+plugins=(brew bower docker git github go npm osx ruby rails sbt scala vagrant)
 
 source $ZSH/oh-my-zsh.sh
 source $CONF/zshenv
