@@ -1,0 +1,11 @@
+
+function gcloud-env() {
+    env=$1
+
+    if [ $env == 'prod' ]
+    then
+        gcloud config set project sophos-home
+    else
+        gcloud config set project sophos-home-$env
+    fi
+}

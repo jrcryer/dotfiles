@@ -1,0 +1,7 @@
+function jdk() {
+  version=$1
+
+  export JAVA_HOME="/Library/Java/JavaVirtualMachines/amazon-corretto-$version.jdk/Contents/Home";
+  export PATH="$JAVA_HOME/bin:$PATH";
+  java -version
+}

@@ -4,3 +4,7 @@ function cloud-test-only() {
 
   ./gradlew $service\:test --tests '*$test*'
 }
+
+function infra_release() {
+  date +"INFRA.%Y.%U"
+}

@@ -1,14 +1,16 @@
 # Path to your oh-my-zsh configuration.
 CONF=$HOME/dotfiles/zsh
 ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="gozilla"
 
 source $CONF/aliases
 source $CONF/functions/general
 source $CONF/functions/aws
-source $CONF/functions/bbc
-source $CONF/functions/db
 source $CONF/functions/git
+source $CONF/functions/java
 source $CONF/functions/sophos
+source $CONF/functions/date
+source $CONF/gcloud
 
 TZ="Europe/London"
 HISTFILE=$HOME/.zhistory
@@ -18,22 +20,30 @@ SAVEHIST=20000
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew bower docker git github go npm osx ruby rails sbt scala vagrant)
+plugins=(macos brew bower docker git github npm ruby rails sbt scala emotty emoji)
+fpath=(/usr/local/share/zsh-completions $fpath)
 
 source $ZSH/oh-my-zsh.sh
 source $CONF/zshenv
 source $CONF/prompt
+#source $HOME/g/CESG/bossa/bash-completion/bossa.v1
 
-#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home
-#export PATH=$JAVA_HOME/bin:$PATH
-
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
+export PATH=$JAVA_HOME/bin:$PATH
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export CHROME_BINARY=/Users/jamescryer/.local/bin/chromedriver
 export PATH=$PATH:$HOME/bin:$HOME/.rbenv/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/$HOME/phantomjs/bin
 export PATH=$PATH:$HOME/google-cloud-sdk/bin:$HOME/google-cloud-sdk/platform/google_appengine/
-export PATH=~/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/g/tools/saas-tools/cloudshell:$HOME/g/tools/saas-tools/python/cloud:$PATH
+export PATH=$HOME/g/CESG/bossa:$ANDROID_HOME:$PATH
 export PATH=/Users/jamescryer/Developer/projects/emsdk:/Users/jamescryer/Developer/projects/emsdk/clang/fastcomp/build_incoming_64/bin:/Users/jamescryer/Developer/projects/emsdk/node/8.9.1_64bit/bin:/Users/jamescryer/Developer/projects/emsdk/emscripten/incoming:/Users/jamescryer/Developer/projects/emsdk/binaryen/master_64bit_binaryen/bin:$PATH
+export APPENGINE=$HOME/google-cloud-sdk/platform/google_appengine/
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 eval "$(rbenv init - zsh)"
+eval "$(pyenv init -)"
 
-ZSH_THEME="robbyrussell"
+
 
 # better cding
 # http://robots.thoughtbot.com/cding-to-frequently-used-directories-in-zsh
@@ -41,18 +51,70 @@ setopt auto_cd
 cdpath=($HOME/projects $HOME/xcode $HOME/g/home $HOME/g/cloud $HOME/Developer/projects)
 
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-eval "$(pyenv init -)"
-source '/Users/jamescryer/google-cloud-sdk/path.zsh.inc'
-source '/Users/jamescryer/google-cloud-sdk/completion.zsh.inc'
+# source '/Users/jamescryer/google-cloud-sdk/path.zsh.inc'
+# source '/Users/jamescryer/google-cloud-sdk/completion.zsh.inc'
 export PATH="/usr/local/opt/docker@1.71/bin:$PATH"
+export PUB_HOSTED_URL="https://artifactory.sophos-ops.com/artifactory/api/pub/esg-build-pub-dirty/"
+export PATH="$PATH:$HOME/development/flutter/bin" # Or wherever you put flutter
+export PATH="$PATH:$HOME/.pub-cache/bin" # dart pub cache
+export PATH="$PATH:$HOME/development/flutter/.pub-cache/bin" # flutter pub cache
+
+eval 'set +o history' 2>/dev/null || setopt HIST_IGNORE_SPACE 2>/dev/null
+ touch ~/.gitcookies
+ chmod 0600 ~/.gitcookies
+
+ git config --global http.cookiefile ~/.gitcookies
+
+ tr , \\t <<\__END__ >>~/.gitcookies
+source.developers.google.com,FALSE,/,TRUE,2147483647,o,git-james.cryer.sophos.com=1/IZDOA59UmDq9ceMQ4FUqoVZ47NX87TVZGXq2QanAZSI
+__END__
+eval 'set -o history' 2>/dev/null || unsetopt HIST_IGNORE_SPACE 2>/dev/null
 
 alias hmr-dep='docker run --rm -it --network="host" registry.sophos-tools.com/platform/hmr-dep'
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/jamescryer/.nvm/versions/node/v7.0.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/jamescryer/.nvm/versions/node/v7.0.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/jamescryer/.nvm/versions/node/v7.0.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/jamescryer/.nvm/versions/node/v7.0.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#  local node_version="$(nvm version)"
+#  local nvmrc_path="$(nvm_find_nvmrc)"
+
+#  if [ -n "$nvmrc_path" ]; then
+#    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+#    if [ "$nvmrc_node_version" = "N/A" ]; then
+#      nvm install
+#    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+#      nvm use
+#    fi
+#  elif [ "$node_version" != "$(nvm version default)" ]; then
+#    echo "Reverting to nvm default version"
+#    nvm use default
+#  fi
+#}
+#add-zsh-hook chpwd load-nvmrc
+#load-nvmrc
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+export PATH="/usr/local/opt/terraform@0.12/bin:$PATH"
+
+# export PATH="$HOME/.poetry/bin:$PATH"
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+eval "$(pyenv init -)"
+eval "$(pyenv init -)"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/james.cryer/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/james.cryer/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/james.cryer/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/james.cryer/google-cloud-sdk/completion.zsh.inc'; fi

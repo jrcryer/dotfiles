@@ -1,0 +1,3 @@
+function week_of_year() {
+ node ./functions/date.js
+}

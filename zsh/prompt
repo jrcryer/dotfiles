@@ -6,7 +6,7 @@ export MAVEN_OPTS=$SBT_OPTS
 ZSH_THEME_GIT_PROMPT_PREFIX="("
 ZSH_THEME_GIT_PROMPT_SUFFIX=")$reset_color"
 ZSH_THEME_GIT_PROMPT_DIRTY="$fg_no_bold[red]+"
-ZSH_THEME_GIT_PROMPT_CLEAN="$fg_no_bold[green]"
+ZSH_THEME_GIT_PROMPT_CLEAN="$fg_no_bold[yellow]"
 
-PROMPT='$fg_no_bold[cyan]james at $fg_no_bold[green]$(get_pwd)$(put_spacing)$(git_prompt_info)
+PROMPT='$fg_no_bold[cyan]james at $fg_no_bold[yellow]$(get_pwd)$(put_spacing)$(git_prompt_info)
 $reset_color→ '

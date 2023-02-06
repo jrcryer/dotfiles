@@ -1,14 +1,16 @@
 # PAIR:warn-unless-pair,backup
 [core]
 	excludesfile = ~/.gitignore
+	autocrlf = input
 
 [user]
-	name = James Cryer
+	name = jamescryer
 	email = james.cryer@sophos.com
         username = jamescryer
 
 [push]
 	default = simple
+	autoSetupRemote = true
 
 [rerere]
 	enabled = true
@@ -64,10 +66,10 @@
 	create-pull-request = !sh -c 'stash pull-request $0'
 
 [color]
-	ui = auto
+	ui = True
 
 [credential]
-	helper = cache --timeout=3600
+	helper = osxkeychain
 
 [diff]
 	rename = copy
@@ -101,6 +103,21 @@
 #[url "https://"]
 #	insteadOf = git://
 [http]
-	cookiefile = /Users/jamescryer/.gitcookies
+	cookiefile = /Users/james.cryer/.gitcookies
 [credential "https://source.developers.google.com"]
-	helper = /Users/jamescryer/.gcloud.sh
+# [url "https://github.com/"]
+# 	insteadOf = git@github.com:
+# [url "https://"]
+# 	insteadOf = git://
+[url "https://source.developers.google.com/p//r"]
+
+[credential "https://source.developers.google.com"]
+	helper = gcloud.sh
+# [url "https://github.com/"]
+# 	insteadOf = git@github.com:
+# [url "https://"]
+# 	insteadOf = git://
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true

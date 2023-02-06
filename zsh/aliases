@@ -36,11 +36,12 @@ alias gds="git diff --staged"
 alias ghp="git checkout gh-pages && git rebase master && git push origin gh-pages && git checkout master"
 alias gl="git log --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit"
 alias gpo="git pull origin"
-alias gpom="git pom"
 alias gpu="git push"
+alias gpo="git push -u origin"
 alias grm="git rm"
 alias grh="git reset HEAD"
 alias gum="gco master && gpo"
+alias gud="gco develop && gpo"
 alias gpuhe="git push heroku master"
 alias gput="git push --tags"
 alias gpuh="gpu && gput && gpuhe"
@@ -68,6 +69,11 @@ alias vssh="vagrant ssh"
 # dotfiles
 alias df="cd ~/dotfiles"
 alias srcz="source ~/.zshrc"
+
+# sophos
+alias tform-dev="terraform apply -var project=sophos-home-dev -var env=dev -var customer-ui-url=my-home-dev.sophos.com --state=state/dev.tfstate"
+alias tform-qa="terraform apply -var project=sophos-home-qa -var env=qa -var customer-ui-url=my-home-qa.sophos.com --state=state/qa.tfstate"
+alias tform-prod="terraform apply -var project=sophos-home -var env=prod -var customer-ui-url=my.sophos.com --state=state/prod.tfstate"
 
 # thanks to @phuunet for this one
 # https://twitter.com/phuunet/status/339318973634052096

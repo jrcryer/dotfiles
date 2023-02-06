@@ -1,16 +1,48 @@
-update
-
-upgrade
-
-install cmake
-install git
-install gnu-sed
-install go
-install mongodb
-install phantomjs
-install redis
-install rbenv
-install ruby-build
-install scala
-install sbt
-install wget
+tap "aws/tap"
+tap "dart-lang/dart"
+tap "heroku/brew"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "leoafarias/fvm"
+tap "mongodb/brew"
+tap "snyk/tap"
+tap "stripe/stripe-cli"
+brew "sqlite"
+brew "binutils"
+brew "bzip2"
+brew "glib"
+brew "cmake"
+brew "coreutils"
+brew "curl"
+brew "diffutils"
+brew "docker-compose", link: false
+brew "fastlane", link: false
+brew "findutils"
+brew "gawk"
+brew "gh"
+brew "git"
+brew "gnu-indent"
+brew "gnu-sed"
+brew "gnu-tar"
+brew "gnu-which"
+brew "libevent"
+brew "unbound"
+brew "gnutls"
+brew "go"
+brew "gradle"
+brew "grep"
+brew "gzip"
+brew "jq"
+brew "nvm"
+brew "pyenv"
+brew "rbenv"
+brew "socat"
+brew "terraform"
+brew "watch"
+brew "zsh"
+brew "zsh-completions"
+brew "aws/tap/aws-sam-cli"
+brew "stripe/stripe-cli/stripe"
+cask "iterm2"
