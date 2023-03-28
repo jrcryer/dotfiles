@@ -1,4 +1,4 @@
-export SBT_OPTS='-XX:PermSize=512M -Djsse.enableSNIExtension=false -XX:MaxPermSize=1024M'
+#export SBT_OPTS='-XX:PermSize=512M -Djsse.enableSNIExtension=false -XX:MaxPermSize=1024M'
 
 export JAVA_OPTS=$SBT_OPTS
 export MAVEN_OPTS=$SBT_OPTS

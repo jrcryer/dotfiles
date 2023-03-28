@@ -97,27 +97,9 @@
 [include]
 	path = ~/.gitconfig_custom
 
-# vim: set ts=8 sts=8 sw=8:
-#[url "https://github.com/"]
-#	insteadOf = git@github.com:
-#[url "https://"]
-#	insteadOf = git://
-[http]
-	cookiefile = /Users/james.cryer/.gitcookies
-[credential "https://source.developers.google.com"]
-# [url "https://github.com/"]
-# 	insteadOf = git@github.com:
-# [url "https://"]
-# 	insteadOf = git://
-[url "https://source.developers.google.com/p//r"]
-
-[credential "https://source.developers.google.com"]
-	helper = gcloud.sh
-# [url "https://github.com/"]
-# 	insteadOf = git@github.com:
-# [url "https://"]
-# 	insteadOf = git://
 [init]
 	defaultBranch = main
 [pull]
 	rebase = true
+[http]
+	cookiefile = /Users/james.cryer/.gitcookies
